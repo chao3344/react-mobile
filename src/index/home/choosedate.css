@@ -1,0 +1,9 @@
+.am-list-content{
+    display:flex;
+    align-items: center;
+    color:#bbb !important;
+    
+}
+.am-list-content .ico{
+    margin-right:18px;
+}
