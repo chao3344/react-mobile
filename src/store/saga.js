@@ -6,7 +6,8 @@ let { GETLIST,
     CHANGECITY,
     GETLOCALLIST,
     GEThotelName,
-    GETTIME } = index.types
+    GETTIME,
+    GETStar } = index.types
 
 function* sagas(){
 
@@ -16,6 +17,7 @@ function* sagas(){
     yield takeEvery(GETLOCALLIST,index.LocalData)
     yield takeEvery(GEThotelName,index.HotelData)
     yield takeEvery(GETTIME,index.TimeData)
+    yield takeEvery(GETStar,index.StarData)
 }
 
 

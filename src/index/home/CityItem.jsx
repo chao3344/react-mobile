@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import {CityItemWrap} from '../indexStyled'
 import bkimg from 'imgs/images/citys.jpg'
 
+import {withRouter} from 'react-router-dom'
+
 class CityItem extends Component {
+
+
+    clickcity = (id,name)=>()=>{
+        this.props.history.push('/hotel')
+        console.log(id,name)
+    }
+
     render() {
         return (
             <>
@@ -10,6 +19,7 @@ class CityItem extends Component {
                 <CityItemWrap
                     style={{background:`url(${bkimg}) 0 ${val.PosY}`,backgroundSize: '100% 750px'}}
                     key={val.cityId}
+                    onClick={this.clickcity(val.cityId,val.cityName)}
                 >
                     
                         <div data-href="http://m.elong.com/hotel/beijing"  city-id="0101" city-name="北京">
@@ -26,4 +36,4 @@ class CityItem extends Component {
     }
 }
 
-export default CityItem;
+export default withRouter(CityItem);

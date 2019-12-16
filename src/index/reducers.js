@@ -2,7 +2,8 @@ import { LOADDATA,
   CHANGECITY,
   LOCALLISTDATA,
   HOTELName,
-  TimeDATA } from './action-types'
+  TimeDATA,
+  StarDATA } from './action-types'
 
 const defaultState = {
     list:[],
@@ -12,7 +13,10 @@ const defaultState = {
     hotelId:'',
     hotelName:'',
     startTime:'',
-    endTime:''
+    endTime:'',
+    lowPrice:'',
+    hightPrice:'',
+    sofoVal:''
 }
 
 export const listdata = (state=defaultState,action) => {
@@ -71,6 +75,19 @@ export const time = (state=defaultState,action) => {
         return {
           startTime:action.data.starttime,
           endTime:action.data.endtime
+        }
+      default:
+        return state
+    }
+}
+
+export const star = (state=defaultState,action) => {
+  switch(action.type) {
+      case StarDATA:
+        return {
+          lowPrice:action.data.lowprice,
+          hightPrice:action.data.hightprice,
+          sofoVal:action.data.sofoval
         }
       default:
         return state

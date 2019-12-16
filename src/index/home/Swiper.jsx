@@ -29,7 +29,6 @@ class Swiper extends Component {
 
     componentDidMount(){
         // this.props.loadData()
-        
     }
  
     render() {

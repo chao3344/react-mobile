@@ -8,4 +8,5 @@ export default combineReducers({
     local:reducers.local,
     hotel:reducers.hotel,
     time:reducers.time,
+    star:reducers.star,
 })

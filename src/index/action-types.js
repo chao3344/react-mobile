@@ -12,3 +12,7 @@ export const HOTELName = 'index/hotel_name'
 
 export const GETTIME = 'index/time'
 export const TimeDATA = 'index/time_data'
+
+
+export const GETStar = 'index/star'
+export const StarDATA = 'index/star_data'

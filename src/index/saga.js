@@ -48,11 +48,19 @@ function * TimeData(action){
     } catch(e){}
 }
 
+function * StarData(action){
+    
+    try {
+        yield put({type:types.StarDATA,data:action})
+    } catch(e){}
+}
+
 export{
     types,
     loadData as action,
     CityData,
     LocalData,
     HotelData,
-    TimeData
+    TimeData,
+    StarData
 }

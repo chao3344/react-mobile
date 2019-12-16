@@ -52,6 +52,7 @@ class Index extends Component {
                 <CityList></CityList>
                 <Footer></Footer>
                 
+                
             </div>
         );
     }

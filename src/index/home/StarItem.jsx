@@ -5,7 +5,7 @@ import {StarItemWrap} from '../indexStyled'
 
 import { connect } from 'react-redux'
 import {} from '../action-types'
-
+import {GETStar} from '../action-types'
 
 const mapState = state => ({
     
@@ -13,9 +13,12 @@ const mapState = state => ({
 
 
 const mapDispatch = dispatch => ({
-    HotelData(sn,name){
+    StarData(lowpri,hightpri,sofo){
         dispatch({
-            
+            type:GETStar,
+            lowprice:lowpri,
+            hightprice:hightpri,
+            sofoval:sofo
         })
     }
 })
@@ -24,9 +27,12 @@ class StarItem extends Component {
 
     state={
         active:'不限',
-        sn:'-1',
-        activeprice:'不限',
-        data:[]
+        sofoval:'-1',
+        activeprice:'无限制',
+        data:[],
+        highprice:'',
+        lowprice:'',
+        
     }
     
     maskonclick = ()=>{
@@ -36,22 +42,28 @@ class StarItem extends Component {
     liclick = (name,id) =>{
         this.setState({
             active:name,
-            sn:id
+            sofoval:id
         })
         
     }
-    Changeprice = (price)=>{
+     Changeprice = (price)=>{
         this.setState({
             activeprice:price
         })
 
         if( price === '无限制' ){
-            console.log('无限制')
+            
         }
         else if( price === '700以上' ){
-            console.log('700以上')
+            this.setState({
+                lowprice:'700'
+            })
         }else{
-            console.log(1)
+            
+            this.setState({
+                lowprice:price.split("-")[0],
+                highprice:price.split("-")[1]
+            })
         }
         
 
@@ -63,20 +75,21 @@ class StarItem extends Component {
         await this.setState({
             data:{
                 active:this.state.active,
-                sn:this.state.sn,
+                sofoval:this.state.sofoval,
                 activeprice:this.state.activeprice
             }
         })
     
         this.props.Makesure(this.state.data)
         this.props.choosestar()
+        this.props.StarData(this.state.lowprice,this.state.highprice,this.state.sofoval)
     }
 
     reset = () => {
         this.setState({
-            active:'不限',
+            active:'无限制',
             activeprice:'不限',
-            sn:'-1'
+            sofoval:'-1'
         })
     }
     render() {
@@ -98,7 +111,7 @@ class StarItem extends Component {
                         <div className="price">
                             <div className="sp-tit">价格</div>
                             <ul className="price-list">
-                                <li className={this.state.activeprice === '不限'?'on':''} price-value="0" onClick={this.Changeprice.bind(this,"无限制")}>无限制</li>
+                                <li className={this.state.activeprice === '无限制'?'on':''} price-value="0" onClick={this.Changeprice.bind(this,"无限制")}>无限制</li>
                                 <li price-value="0-150" className={this.state.activeprice === '0-150'?'on':''} onClick={this.Changeprice.bind(this,"0-150")}>0-150</li>
                                 <li price-value="150-300" className={this.state.activeprice === '150-300'?'on':''} onClick={this.Changeprice.bind(this,"150-300")}>150-300</li>
                                 <li price-value="300-450" className={this.state.activeprice === '300-450'?'on':''} onClick={this.Changeprice.bind(this,"300-450")}>300-450</li>

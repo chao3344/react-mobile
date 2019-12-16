@@ -13,11 +13,11 @@ class CityList extends Component {
             { cityId:'2001',cityName:'广州' ,PosY:-150+'px' },
             { cityId:'2003',cityName:'深圳' ,PosY:-225+'px' },
             { cityId:'3201',cityName:'香港' ,PosY:-300+'px' },
-            { cityId:'0102',cityName:'北京' ,PosY:-375+'px' },
-            { cityId:'0103',cityName:'北京' ,PosY:-450+'px' },
-            { cityId:'0104',cityName:'北京' ,PosY:-525+'px' },
-            { cityId:'0105',cityName:'北京' ,PosY:-600+'px' },
-            { cityId:'0106',cityName:'北京' ,PosY:-675+'px' },
+            { cityId:'1201',cityName:'杭州' ,PosY:-375+'px' },
+            { cityId:'1102',cityName:'苏州' ,PosY:-450+'px' },
+            { cityId:'1202',cityName:'宁波' ,PosY:-525+'px' },
+            { cityId:'1101',cityName:'南京' ,PosY:-600+'px' },
+            { cityId:'2201',cityName:'三亚' ,PosY:-675+'px' },
         ]
     }
     render() {

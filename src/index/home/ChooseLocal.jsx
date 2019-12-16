@@ -91,7 +91,7 @@ class ChooseLocal extends Component {
 
                                 <div className="keyword-group" key={val.sn + val.typeId}>
                                     <div className="page-title" key="val.sn">{val.nameCn}</div>
-                                    <div className="keyword-list" key="val.nameCn+index">
+                                    <div className="keyword-list" key="val.nameCn">
                                         <ul>
                                             {
                                                 this.props.localdata[index].subFilterInfoEntities.map((value)=>(

@@ -3,9 +3,15 @@ import { Margin10,UserNav } from '../indexStyled'
 import img from 'imgs/images/search-icon.png'
 import imgApp from 'imgs/images/search_app.jpg'
 
+import { withRouter } from 'react-router-dom'
 
 
 class UserList extends Component {
+
+    OnLogin = ()=>()=>{
+        this.props.history.push('/user')
+    }
+
     render() {
         return (
             <Margin10>
@@ -14,7 +20,9 @@ class UserList extends Component {
                         <ul>
                             <li className="tjclick">
                                 <div className="a">
-                                    <i className="search-tool-i1" style={{background:`url(${img})`,backgroundPosition:'-24px -24px',backgroundSize:'150px 140px'}}></i>
+                                    <i className="search-tool-i1" style={{background:`url(${img})`,backgroundPosition:'-24px -24px',backgroundSize:'150px 140px'}}
+                                        onClick={this.OnLogin()}
+                                    ></i>
                                     账户
                                 </div>
                             </li>
@@ -41,4 +49,4 @@ class UserList extends Component {
     }
 }
 
-export default UserList;
+export default withRouter(UserList);
