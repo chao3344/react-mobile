@@ -49,6 +49,7 @@ export const HotelWrap = styled.div`
             padding: 0 8px;
             text-align:center;
             margin-left:.1rem;
+            color:#555;
             input{
                 margin-top:.05rem;
                 border:0
@@ -102,6 +103,12 @@ export const HotelWrap = styled.div`
                     }
                     
                 }
+                .isclick{
+                    background: none;
+                    border: 1px solid #4499FF;
+                    color: #4499FF;
+                    border-radius:.2rem;
+                }
             }
         }
         
@@ -129,6 +136,11 @@ export const HotelWrap = styled.div`
                         margin-top: 10px;
                         margin-bottom: 10px;
                         border: 1px solid #ffffff;
+                    }
+                    .check{
+                        color: #4499FF;
+                        border: 1px solid #4499FF;
+                        background: #ffffff;
                     }
                 }
             }
@@ -188,6 +200,11 @@ export const HotelWrap = styled.div`
                         margin-left: 10px;
                         margin-top: 10px;
                         margin-bottom: 10px;
+                    }
+                    .active{
+                        border: none;
+                        border-bottom: 1px solid #E0E0E0;
+                        color: #4499FF;
                     }
                 }
             }
@@ -355,7 +372,7 @@ export const HotelItemWrap = styled.div`
                 .d4{
                     font-size: .12rem;
                     color: #898989;
-                    line-height: 12px;
+                    line-height: 16px;
                     white-space: nowrap;
                 }
             }

@@ -4,20 +4,21 @@ import { LOADDATA,
   HOTELName,
   TimeDATA,
   StarDATA } from './action-types'
+import { Map } from 'immutable'
 
-const defaultState = {
-    list:[],
-    localList:'',
-    cityName:'',
-    cityId:'',
-    hotelId:'',
-    hotelName:'',
-    startTime:'',
-    endTime:'',
-    lowPrice:'',
-    hightPrice:'',
-    sofoVal:''
-}
+const defaultState = Map({
+  list:[],
+  localList:'',
+  cityName:'',
+  cityId:'',
+  hotelId:'',
+  hotelName:'',
+  startTime:'',
+  endTime:'',
+  lowPrice:'',
+  hightPrice:'',
+  sofoVal:''
+})
 
 export const listdata = (state=defaultState,action) => {
     switch(action.type) {
@@ -31,13 +32,13 @@ export const listdata = (state=defaultState,action) => {
 }
 
 export const city = (state=defaultState,action) => {
-  
+    
     switch(action.type) {
         case CHANGECITY:
           return {
             cityName: action.cityname,
-            cityId: action.cityid
-          }
+            cityId: action.cityid,  
+          } 
         default:
           return state
       }

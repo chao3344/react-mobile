@@ -2,19 +2,49 @@ import React, { Component } from 'react';
 import {CityItemWrap} from '../indexStyled'
 import bkimg from 'imgs/images/citys.jpg'
 
+import { CHANGECITY,GETTIME } from '../action-types'
+
 import {withRouter} from 'react-router-dom'
+import { connect } from 'react-redux'
+
+
+
+const mapState = state =>({})
+
+const mapDispatch = dispatch => ({
+    CityData(name,id){
+        // 派发一个CHANGECITY使得全局中的saga里的takeEvery检测到
+        dispatch({
+            type:CHANGECITY,
+            cityname:name,
+            cityid:id
+        })
+    },
+    TimeData(){
+        dispatch({
+          type:GETTIME,
+          starttime:new Date().getFullYear()+'-'+ (new Date().getMonth()+1) +'-'+ new Date().getDate(),
+          endtime:new Date().getFullYear()+'-'+ (new Date().getMonth()+1) +'-'+ (new Date().getDate()+1)
+        })
+    }
+})
+
+
 
 class CityItem extends Component {
 
 
     clickcity = (id,name)=>()=>{
         this.props.history.push('/hotel')
-        console.log(id,name)
+        
+        this.props.CityData(name,id)
+        this.props.TimeData()
     }
 
     render() {
         return (
             <>
+            
             {this.props.cityList.map((val,index)=>(
                 <CityItemWrap
                     style={{background:`url(${bkimg}) 0 ${val.PosY}`,backgroundSize: '100% 750px'}}
@@ -36,4 +66,4 @@ class CityItem extends Component {
     }
 }
 
-export default withRouter(CityItem);
+export default withRouter(connect(mapState,mapDispatch)(CityItem));

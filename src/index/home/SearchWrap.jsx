@@ -16,15 +16,26 @@ import { connect } from 'react-redux'
 
 
 const mapState = state => ({
-    cityname:state.city.cityName,
-    cityid:state.city.cityId,
-    hotelid:state.hotel.hotelId,
-    hotelname:state.hotel.hotelName,
-    starttime:state.time.startTime,
-    endtime:state.time.endTime,
-    lowprice:state.star.lowPrice,
-    hightprice:state.star.hightPrice,
-    sofoval:state.star.sofoVal,
+    cityname:state.getIn(['city','cityName']),
+    cityid:state.getIn(['city','cityId']),
+    hotelid:state.getIn(['hotel','hotelId']),
+    hotelname:state.getIn(['hotel','hotelName']),
+    starttime:state.getIn(['time','startTime']),
+    endtime:state.getIn(['time','endTime']),
+    lowprice:state.getIn(['star','lowPrice']),
+    hightprice:state.getIn(['star','hightPrice']),
+    sofoval:state.getIn(['star','sofoVal']),
+
+    // cityid:state.city.cityId,
+    // hotelid:state.hotel.hotelId,
+    // hotelname:state.hotel.hotelName,
+
+    // starttime:state.time.startTime,
+    // endtime:state.time.endTime,
+
+    // lowprice:state.star.lowPrice,
+    // hightprice:state.star.hightPrice,
+    // sofoval:state.star.sofoVal,
 })
 
 
@@ -36,12 +47,12 @@ class SearchWrap extends Component {
 
     SearchResult = ()=>{
         if( this.props.cityname ){
-            console.log(this.props)
+           
             this.props.history.push({
                 pathname:'/hotel',
             })
             store.set('search',{
-                cityia:this.props.cityid,
+                cityid:this.props.cityid,
                 cityname:this.props.cityname,
                 hotelid:this.props.hotelid,
                 hotelname:this.props.hotelname,
@@ -57,7 +68,9 @@ class SearchWrap extends Component {
 
 
     render() {
+        
         return (
+            
             <div style={{borderBottom:'1px solid #bbb'}}>
                 <SearchItemWrap>
                    

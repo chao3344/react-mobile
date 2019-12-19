@@ -9,7 +9,7 @@ import { GETLIST } from '../action-types'
 
 
 const mapState = state => ({
-    list:state.home.list
+    list:state.getIn(['home','list'])
 })
 
 const mapDispatch = dispatch => ({

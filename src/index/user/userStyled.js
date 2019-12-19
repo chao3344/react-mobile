@@ -107,7 +107,6 @@ export const UserWrap = styled.div`
                         display: inline-block;
                         width: .96rem;
                         height: .4rem;
-                        border: 1px solid #49f;
                         font-size: .12rem;
                         color: #49f;
                         line-height: .4rem;
@@ -115,6 +114,18 @@ export const UserWrap = styled.div`
                         text-align: center;
                         border: 1px solid #b2b2b2;
                         color: #888;
+                    }
+                    .active{
+                        display: inline-block;
+                        width: .96rem;
+                        height: .4rem;
+                        border: 1px solid #49f;
+                        text-align: center;
+                        font-size: .12rem;
+                        background:#49f;
+                        color:#fff;
+                        line-height: .4rem;
+                        border-radius: 3px;
                     }
                 }
             }
@@ -132,8 +143,10 @@ export const UserWrap = styled.div`
                     outline: none!important;
                     background-color: transparent;
                     border: 0;
-                   
                 }
+            }
+            .light{
+                background:#4499FF !important;
             }
         }
     }

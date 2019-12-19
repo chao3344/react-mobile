@@ -28,8 +28,9 @@ const extra = {
 
 
 const mapState = state => ({
-  cityid:state.city.cityId,
-  localdata:state.local.localList
+  
+  cityid:state.getIn(['city','cityId']),
+  localdata:state.getIn(['local','localList']),
 })
 
 
@@ -104,6 +105,7 @@ class ChooseDate extends Component {
       getDateExtra = date => extra[+date];
       
     render() {
+      
         return (
             <DateWrap>
                 <List className="calendar-list" style={{ backgroundColor: 'white'}}>

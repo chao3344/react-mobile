@@ -10,8 +10,9 @@ import {CHANGECITY,GETLOCALLIST} from '../action-types'
 
 const mapState = state => ({
     
-    cityname:state.city.cityName,
-    cityid:state.city.cityId
+    cityname:state.getIn(['city','cityName']),
+    cityid:state.getIn(['city','cityId']),
+    
 })
 
 const mapDispatch = dispatch => ({
@@ -24,7 +25,6 @@ const mapDispatch = dispatch => ({
         })
     },
     LocalData(id){
-        // 派发一个CHANGECITY使得全局中的saga里的takeEvery检测到
         dispatch({
             type:GETLOCALLIST,
             url:'/api/home/api/gethotelsearchrecommendplace',
@@ -118,6 +118,7 @@ class Choosecity extends Component {
     render() {
         return (
             <div>
+                
                 <InputItem
                         value={this.state.CityName?this.state.CityName:''}
                         extra={[<IconLeft key="1"></IconLeft>]}

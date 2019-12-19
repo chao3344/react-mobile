@@ -5,16 +5,45 @@ import { UserWrap } from './userStyled'
 
 
 class login extends Component {
+    state={
+      isPhone:false,
+      isTest:false
+    }
 
     back = ()=>()=>{
-        this.props.history.goBack()
-        console.log(this.props)
+      this.props.history.goBack()
+        
     }
-    changetest= ()=>()=>{
-        console.log(1)
+    Gettest= ()=>()=>{
+      if(this.state.isPhone){
+        
+      }
     }
     changephone= ()=>()=>{
-        console.log(2)
+      if(this.input.value.length === 11){
+        this.setState({
+          isPhone:true
+        })
+      }else{
+        this.setState({
+          isPhone:false
+        })
+      }
+    }
+
+    changetest = ()=>()=>{
+      if( this.inputtest.value.length === 4 ){
+        this.setState({
+          isTest:true
+        })
+      }
+    }
+
+    // 登录
+    Login = ()=>()=>{
+      if( this.state.isPhone && this.state.isTest ){
+        
+      }
     }
 
     render() {
@@ -48,6 +77,7 @@ class login extends Component {
                         defaultValue="" 
                         placeholder="请输入手机号"
                         maxLength="11"
+                        ref={input => this.input = input}
                         onChange={this.changephone()} 
                     />
                   </div>
@@ -59,15 +89,16 @@ class login extends Component {
                       defaultValue=""
                       placeholder="请输入短信验证码"
                       onChange={this.changetest()}
+                      ref={inputtest => this.inputtest = inputtest}
                       maxLength="4"
                     />
                   </div>
-                  <div className="input-right-addons" data-events="click">
-                    <span className="validate-code disabled">获取验证码</span>
+                  <div className="input-right-addons" onClick={this.Gettest()}>
+                    <span className={[this.state.isPhone ? 'active':"validate-code"]} >获取验证码</span>
                   </div>
                 </div>
 
-                <div className="form-button" data-events="click">
+                <div className={["form-button", this.state.isTest?"light":""].join(' ')} onClick={this.Login()}>
                   <button>登录</button>
                 </div>
               </div>

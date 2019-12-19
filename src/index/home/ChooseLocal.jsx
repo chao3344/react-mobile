@@ -9,8 +9,10 @@ import {GEThotelName} from '../action-types'
 
 
 const mapState = state => ({
-    cityid:state.city.cityId,
-    localdata:state.local.localList
+    // cityid:state.city.cityId,
+    // localdata:state.local.localList,
+    cityid:state.getIn(['city','cityId']),
+    localdata:state.getIn(['local','localList']),
 })
 
 

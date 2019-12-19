@@ -15,11 +15,7 @@ import swiper5 from 'imgs/images/swiper5.jpg'
 
 import { connect } from 'react-redux'
 
-const mapState = state =>({
-    
-    cityname:state.city.cityName,
-    cityid:state.city.cityId
-})
+
 
 class Index extends Component {
     
@@ -58,4 +54,4 @@ class Index extends Component {
     }
 }
 
-export default connect(mapState)(Index);
+export default connect()(Index);
