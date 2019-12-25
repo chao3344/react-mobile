@@ -39,7 +39,7 @@ class ChooseStar extends Component {
                 {
                     // 运算符，当条件为真是才渲染组件
                     this.state.show &&
-                    <StarItem choosestar={this.choosestar} Makesure={this.makesure}></StarItem>
+                    <StarItem choosestar={this.choosestar} Makesure={this.makesure} show={this.state.show}></StarItem>
                 }
             </div>
         );

@@ -11,6 +11,9 @@ import { get } from '../../utils/http'
 
 import img from 'imgs/images/login.png'
 
+import Loading from './Loading'
+
+
 
 const mapState = state => ({
   cityname:state.getIn(['city','cityName']),
@@ -40,6 +43,8 @@ class hotel extends Component {
     ismiss:false,
     pagNum:0,
     ispull:true,
+    isLoading:true,
+    
     List:[
       {name:'OYU酒店',dataSn:'n167033088745261_3833717731081439458_40204'},
       {name:'如家',dataSn:'n167033088745261_3833717731081439458_32'},
@@ -82,6 +87,12 @@ class hotel extends Component {
     this.setState({
       HotelList:result.data.hotelList
     })
+
+    if( this.state.HotelList.length !== 0 ){
+      this.setState({
+        isLoading:false
+      })
+    }
     // console.log(this.state.HotelList)
     
 
@@ -107,7 +118,9 @@ class hotel extends Component {
       }
       
       if( obj.y <= bscroll.maxScrollY ){
-
+        await this.setState({
+          isLoading:true
+        })
         // ispull实现防抖
         if( this.state.ispull ){
           this.setState({
@@ -139,7 +152,11 @@ class hotel extends Component {
             }
           })
           
-          
+          if( NewResult.length !== 0 ){
+            this.setState({
+              isLoading:false
+            })
+          }
           await this.setState({
             HotelList:[
               ...this.state.HotelList,
@@ -160,6 +177,9 @@ class hotel extends Component {
 
 
   async GetList(){
+    await this.setState({
+      isLoading:true
+    })
     let result = await get({
       url:'/api/hotelapi/list',
       params:{
@@ -186,7 +206,13 @@ class hotel extends Component {
     this.setState({
       HotelList:result.data.hotelList
     })
-    console.log(this.state.HotelList)
+
+    if( this.state.HotelList.length !== 0 ){
+      this.setState({
+        isLoading:false
+      })
+    }
+    // console.log(this.state.HotelList)
     // await console.log(this.state.hotelbrandids)
     
   }
@@ -241,6 +267,7 @@ class hotel extends Component {
       ismask:false
     })
     this.GetList()
+    
   }
 
   Reset = ()=>()=>{
@@ -304,16 +331,22 @@ class hotel extends Component {
   
 
   render() {
+    
     return (
+
+      
       <HotelWrap>
-        <div className="head" style={{display:this.state.ismiss?"none":"flex"}}>
+        {
+          this.state.isLoading && <Loading></Loading>
+        }
+        <div className={["head", this.state.ismiss?"hidden":"show"].join(' ')} >
           <i onClick={()=>{ this.props.history.goBack() }}>《</i>
-          <div className="head-title">{this.props.cityname}</div>
+          <div className="head-title">{store.get('search').cityname}</div>
         </div>
-        <div className="search-box" style={{display:this.state.ismiss?"none":"flex"}}>
+        <div className={["search-box", this.state.ismiss?"hidden1":"show1"].join(' ')}>
           <div className="search-time">
-            <div className="intime">入:{this.props.starttime}</div>
-            <div className="outtime">离:{this.props.endtime}</div>
+            <div className="intime">入:{store.get('search').starttime}</div>
+            <div className="outtime">离:{store.get('search').endtime}</div>
           </div>
           <div className="search-search">
             <input type="text" placeholder="酒店位置名称不限" />

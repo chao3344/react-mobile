@@ -1,22 +1,49 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 
+import { Modal } from 'antd-mobile'
+
 import { UserWrap } from './userStyled'
 
+// import store from 'store'
+
+const alert = Modal.alert
 
 class login extends Component {
     state={
       isPhone:false,
-      isTest:false
+      isTest:false,
+      randomdata:'',
+    }
+
+    
+    // 产生随机四位的验证码
+    Random =()=>()=> {
+      
+      this.Gettest(Math.floor(Math.random()*(9999-1000)+ 1000))
     }
 
     back = ()=>()=>{
       this.props.history.goBack()
         
     }
-    Gettest= ()=>()=>{
+    Gettest(random){
       if(this.state.isPhone){
         
+        this.setState({
+          randomdata:random
+        })
+        // console.log(random)
+      
+        alert('同城艺龙', `尊敬的用户，您本次登录的验证码为${random}`, [
+          { text: '取消', onPress: () => console.log('cancel') },
+          { text: '确定', onPress: () => 
+            this.setState({
+              isPhone:false
+            })
+          },
+        ])
+
       }
     }
     changephone= ()=>()=>{
@@ -31,20 +58,37 @@ class login extends Component {
       }
     }
 
+    // 验证
     changetest = ()=>()=>{
-      if( this.inputtest.value.length === 4 ){
+      
+      if(Number( this.inputtest.value ) === this.state.randomdata ){
+        
         this.setState({
-          isTest:true
+          isTest:true,
+          isPhone:true
         })
+        
       }
+
     }
 
     // 登录
     Login = ()=>()=>{
       if( this.state.isPhone && this.state.isTest ){
         
+        alert('同城艺龙', '尊敬的用户，您已经成功登陆！,点击确定后页面将在两秒后进行跳转', [
+          { text: '取消', onPress: () => console.log('cancel') },
+          { text: '确定', onPress: () => 
+            // store.set('Login','true')
+            setTimeout(()=>{
+              this.props.history.push('/')
+            },2000)
+          },
+        ])
       }
     }
+
+    
 
     render() {
         return (
@@ -93,7 +137,7 @@ class login extends Component {
                       maxLength="4"
                     />
                   </div>
-                  <div className="input-right-addons" onClick={this.Gettest()}>
+                  <div className="input-right-addons" onClick={this.Random()}>
                     <span className={[this.state.isPhone ? 'active':"validate-code"]} >获取验证码</span>
                   </div>
                 </div>

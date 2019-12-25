@@ -4,13 +4,23 @@ import { HotelItemWrap } from "./hotelStyled";
 
 import img from 'imgs/images/icon-list.png'
 
+import {withRouter} from 'react-router-dom'
+
 // import img1 from 'imgs/images/1.jpg'
 
 class HotelItem extends Component {
   render() {
     return (
       <HotelItemWrap>
-        <li>
+        <li data-id={this.props.list.hotelId} 
+            onClick={()=>{this.props.history.push({
+              pathname:'/detail',
+              state:{
+                dattaId:this.props.list.hotelId,
+                hotelName:this.props.list.hotelName,
+                traceToken:this.props.list.traceToken,
+                cityName:this.props.list.cityName,
+                }})}}>
           <div className="pic">
             <img src={this.props.list.picUrl} alt="" style={{width:"1rem",height:"1.5rem",display:"inline-block"}} />
           </div>
@@ -20,7 +30,7 @@ class HotelItem extends Component {
             </p>
             <p className="comt">
               <span className="comt_no">
-                <b>{this.props.list.commemtPoint}</b>分
+                <b>{this.props.list.commentScore}</b>分
               </span>
               <span className="comt_str com_str_desc">棒极了</span>
               <span className="comt_str com_str_bridge">-</span>
@@ -51,4 +61,4 @@ class HotelItem extends Component {
   }
 }
 
-export default HotelItem;
+export default withRouter(HotelItem);

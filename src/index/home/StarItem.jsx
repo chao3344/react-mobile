@@ -95,8 +95,9 @@ class StarItem extends Component {
     render() {
         return (
             <StarItemWrap>
+                
                 <div className="mask" onClick={ this.maskonclick } ></div>
-                <div className="starbox">
+                <div className={["starbox",this.props.show?"show":""].join(' ')}>
                    <div className="content">
                         <div className="star">
                             <div className="sp-tit">星级（可多选）</div>

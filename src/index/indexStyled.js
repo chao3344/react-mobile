@@ -1,11 +1,23 @@
-import styled from 'styled-components'
+import styled,{ keyframes } from 'styled-components'
 import border from '../component/styled/border'
+
+
+const Up = keyframes`
+    from{
+        bottom:-3.75rem;
+    }
+    to{
+        bottom:0rem;
+    }
+`
+
+
 
 export const SwiperWrap = styled.div `
     height:40vw;
     font-size:0;
-
     overflow:hidden;
+    touch-action:none;
     img{
         width:100%;
         height:40vw
@@ -160,6 +172,11 @@ export const StarItemWrap = styled.div `
         background: #000;
         opacity: 0.7;
     }
+
+    .show{
+        animation: ${Up} 0.3s linear;
+        animation-fill-mode: forwards;
+    }
     .starbox{
         position:absolute;
         width:100%;
@@ -268,6 +285,7 @@ export const CityListWrap = styled.div `
     width: 100%;
     height: 100%;
     background: #F2F2F2;
+    
     .header{
         display:flex;
         padding-right: 10px;
@@ -336,6 +354,25 @@ export const CityListWrap = styled.div `
                 font-size: .12rem;
                 line-height: 24px;
                 margin-bottom: 6px;
+            }
+            .hostory-list{
+                display:flex;
+                flex-wrap:wrap;
+                max-height:1.04rem;
+                overflow:hidden;
+                .hostory-li{
+                    padding: 0 12px;
+                    width: 30%;
+                    border-radius: 3px;
+                    margin-right:3%;
+                    margin-bottom: 12px;
+                    background: #FFF;
+                    height: .4rem;
+                    border: 0;
+                    text-align:center;
+                    font-size:.12rem;
+                    line-height:.4rem;
+                }
             }
         }
         .search-hot{

@@ -7,6 +7,7 @@ import { CHANGECITY,GETTIME } from '../action-types'
 import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import store from 'store'
 
 
 const mapState = state =>({})
@@ -39,6 +40,12 @@ class CityItem extends Component {
         
         this.props.CityData(name,id)
         this.props.TimeData()
+        store.set('search',{
+            cityid:id,
+            cityname:name,
+            starttime:new Date().getFullYear()+'-'+ (new Date().getMonth()+1) +'-'+ new Date().getDate(),
+            endtime:new Date().getFullYear()+'-'+ (new Date().getMonth()+1) +'-'+ (new Date().getDate()+1)
+        })
     }
 
     render() {

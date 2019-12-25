@@ -6,6 +6,7 @@ import searchico from 'imgs/images/search-icon.png'
 
 import { connect } from 'react-redux'
 import {CHANGECITY,GETLOCALLIST} from '../action-types'
+import store from 'store'
 
 
 const mapState = state => ({
@@ -50,7 +51,9 @@ class Choosecity extends Component {
         active:false,
         CityID:'',
         CityName:'',
-        cityshow:''
+        cityshow:'',
+        arr:[]
+        
     }
 
     choosecity = ()=>{
@@ -71,6 +74,19 @@ class Choosecity extends Component {
 
         this.props.CityData(this.state.CityName,this.state.CityID)
         this.props.LocalData(this.state.CityID)
+
+
+        
+        this.setState({
+            arr:[
+                Name,
+                ...this.state.arr
+            ]
+        })
+        
+        
+        store.set('historysearch',this.state.arr)
+
 
     }
     async showcity(nm){
@@ -125,6 +141,7 @@ class Choosecity extends Component {
                         editable={false}
                         onClick={this.choosecity}
                         placeholder={this.state.CityName?'' :'选择入住城市'}
+                        
                     >
                     <div style={{ backgroundImage: `url(${searchico})`,backgroundSize:'150px 140px', height: '16px', width: '16px',backgroundPosition:'0px 0px', }} />
                 </InputItem>
@@ -138,13 +155,26 @@ class Choosecity extends Component {
                                 <span className="back" onClick={this.choosecity}></span>
                                 <div className="search-input">
                                     <i className="icon-search"></i>
-                                    <input type="input"  placeholder="请输入城市名、行政区或景区" />
+                                    <input type="input"  
+                                        placeholder="请输入城市名、行政区或景区" 
+                                        
+                                    />
                                 </div>
                             </div>
                             <div className="city-content">
                                 <div className="search-hostory">
                                     <div className="hostory-title">搜索历史</div>
-                                    <div className="hostory-list"></div>
+                                    <div className="hostory-list">
+                                        {
+                                            store.get('historysearch').map((item,index)=>(
+                                                <div 
+                                                    className="hostory-li"
+                                                    key={index}
+                                                    
+                                                >{item}</div>
+                                            ))
+                                        }
+                                    </div>
                                 </div>
                                 <div className="search-hot">
                                     <div className="hot-title">热门城市</div>

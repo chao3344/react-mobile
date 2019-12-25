@@ -1,5 +1,41 @@
-import styled from 'styled-components'
+import styled,{ keyframes } from 'styled-components'
 
+const Up = keyframes`
+    from {
+        height:.44rem;
+    }
+    to{
+        height:0rem;
+        
+    }
+`
+
+const Down = keyframes`
+    from{
+        height:0rem;
+    }
+    to{
+        height:.44rem;
+    }
+`
+const Up1 = keyframes`
+    from {
+        height:.53rem;
+    }
+    to{
+        height:0rem;
+        
+    }
+`
+
+const Down1 = keyframes`
+    from{
+        height:0rem;
+    }
+    to{
+        height:.53rem;
+    }
+`
 
 export const HotelWrap = styled.div`
     height:100%;
@@ -7,6 +43,14 @@ export const HotelWrap = styled.div`
     display:flex;
     flex-direction:column;
     
+    .show{
+        animation: ${Down} 0.15s linear;
+        animation-fill-mode: forwards;
+    }
+    .hidden{
+        animation: ${Up} 0.15s linear;
+        animation-fill-mode: forwards;
+    }
     .head{
         display:flex;
         padding:0 10px;
@@ -27,6 +71,15 @@ export const HotelWrap = styled.div`
             padding-right:.3rem;
             color:#444;
         }
+    }
+    .show1{
+        animation: ${Down1} 0.15s linear;
+        animation-fill-mode: forwards;
+    }
+    .hidden1{
+        animation: ${Up1} 0.15s linear;
+        animation-fill-mode: forwards;
+        padding:0rem !important;
     }
     .search-box{
         padding:.08rem;
@@ -415,5 +468,29 @@ export const HotelItemWrap = styled.div`
                 }
             }
         }
+    }
+`
+
+
+export const LoadingWrap = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #444;
+    opacity:0.5;
+    z-index: 10006 !important;
+    .loading{
+        width:.8rem;
+        height:.8rem;
+        background-color:#fff !important;
+        box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        position: absolute;
+        left:37%;
+        top:35%;
+        
+        
     }
 `

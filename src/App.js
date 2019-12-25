@@ -2,6 +2,7 @@ import React from 'react';
 import Index from './index/Index.jsx'
 import Hotelindex from './index/hotel/hotel.jsx'
 import Login from './index/user/login'
+import Detail from './index/detail/detail'
 
 import { Provider } from 'react-redux'
 import store from './store/index'
@@ -24,6 +25,11 @@ export default class App extends React.Component{
           <Route
             path="/user"
             component={Login}
+          ></Route>
+
+          <Route
+            path="/detail"
+            component={Detail}
           ></Route>
           <Route
             path="*"
